@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	*{padding: 0;margin: 0;border: 0;list-style: none;}
+	body,html,ul{height: 100%;}
+	ul li{width: 100%;height: 100%;}
+
+	ol{width: 100px;height: auto;background: #ccc;position: fixed;left: 100px;top: 0;border: 1px solid #000;border-width: 1px 0 0 1px;}
+	ol li{height: 80px;line-height: 80px;text-align: center;border: 1px solid #000;border-width: 0 1px 1px 0;cursor: pointer;}
+	.cur{background: yellow;}
+</style>
+<script type="text/javascript" src='jquery-1.10.1.min.js'></script>
+<script type="text/javascript">
+	$(function(){
+		var colors = ['green','purple','yellow','pink','blue'];
+		var winH = $(window).height();
+		$('ul li').each(function(index,element){
+			$(element).css({background:colors[index]})
+		})
+		$('ol li').click(function(){
+			
+
+
+			var div1 = $('ul li').eq($(this).index()).height();
+
+			$(this).addClass('cur').siblings().removeClass()
+			$('body ,html').stop().animate({scrollTop: div1 * $(this).index()})
+			
+		})
+		var timer = null;
+		$(window).scroll(function(event) {
+			/* Act on the event */
+			var scrollH = $(window).scrollTop();
+			timer = setTimeout(function () {
+				// body...
+			$('ol li').eq(parseInt(scrollH/winH)).addClass('cur').siblings().removeClass('cur')
+
+			},500)
+
+			$('title').html(parseInt(scrollH/winH));
+
+
+		});
+	})
+</script>
+</head>
+<body>
+    <ul>
+    	<li>首页</li>
+    	<li>关注</li>
+    	<li>动态</li>
+    	<li>风格</li>
+    	<li>作品</li>
+    </ul>
+    <ol>
+    	<li class=cur>首页</li>
+    	<li>关注</li>
+    	<li>动态</li>
+    	<li>风格</li>
+    	<li>作品</li>
+    </ol>
+</body>
+</html>
